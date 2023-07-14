@@ -1,0 +1,24 @@
+Ice Modmail#2226: New ModMail
+—————————————————
+**Account Information**
+
+Creation Date: Mar 15, 2021 7:55 AM
+Joined Server: Nov 30, 2021 2:35 PM
+
+**The Crazy#0070**: hi I am Crazy I need help in how to make mod mail bot
+The Crazy#0070: m/reply Sure Why Not
+Ice Modmail#2226: Team Ice **The Crazy#0070**: Sure Why Not
+Ice Modmail#2226: **The Crazy#0070**: oh really !
+The Crazy#0070: m/block
+Ice Modmail#2226: `✔` Blocked user
+The Crazy#0070: m/unblock
+Ice Modmail#2226: `✔` Unblocked user
+Ice Modmail#2226: **The Crazy#0070**: hey ya
+The Crazy#0070: m/annon so
+Ice Modmail#2226: (ANNON) **The Crazy#0070**: so
+Ice Modmail#2226: **The Crazy#0070**: Gg How Is It Working
+Ice Modmail#2226: **The Crazy#0070**: Let Me Show You How To Make It 24/7
+The Crazy#0070: gg
+The Crazy#0070: m/reply gg
+Ice Modmail#2226: Team Ice **The Crazy#0070**: gg
+The Crazy#0070: m/close

@@ -1,0 +1,41 @@
+Namsis Ticket#9971: New ModMail
+—————————————————
+**Account Information**
+
+Creation Date: Aug 23, 2019 9:35 PM
+Joined Server: Jun 14, 2022 1:37 PM
+
+**AlyanM ᴹᴱᴺ#1111**: 1
+AlyanM ᴹᴱᴺ#1111: !r r
+Namsis Ticket#9971: Namsis **AlyanM ᴹᴱᴺ#1111**: r
+AlyanM ᴹᴱᴺ#1111: !ar 4
+Namsis Ticket#9971: (ANNON) **AlyanM ᴹᴱᴺ#1111**: 4
+AlyanM ᴹᴱᴺ#1111: !open
+AlyanM ᴹᴱᴺ#1111: !log
+Namsis Ticket#9971: Current Channel Log
+AlyanM ᴹᴱᴺ#1111: !re 3
+Namsis Ticket#9971: `X` There was an error executing that command.
+AlyanM ᴹᴱᴺ#1111: !re
+Namsis Ticket#9971: `X` There was an error executing that command.
+AlyanM ᴹᴱᴺ#1111: !block
+Namsis Ticket#9971: `✔` Blocked user
+AlyanM ᴹᴱᴺ#1111: !unblock
+Namsis Ticket#9971: `✔` Unblocked user
+Namsis Ticket#9971: **AlyanM ᴹᴱᴺ#1111**: 1
+AlyanM ᴹᴱᴺ#1111: \<:admin:986898382750621696>
+AlyanM ᴹᴱᴺ#1111: !r r
+Namsis Ticket#9971: <:admin:986898382750621696> **AlyanM ᴹᴱᴺ#1111**: r
+AlyanM ᴹᴱᴺ#1111: !ar 4
+Namsis Ticket#9971: (ANNON) **AlyanM ᴹᴱᴺ#1111**: 4
+AlyanM ᴹᴱᴺ#1111: !r 4
+Namsis Ticket#9971: <:admin:986898382750621696> **[AlyanM ᴹᴱᴺ#1111]** : 4
+AlyanM ᴹᴱᴺ#1111: !r 4
+Namsis Ticket#9971: <:admin:986898382750621696> **[AlyanM ᴹᴱᴺ#1111]** : 4
+AlyanM ᴹᴱᴺ#1111: !r 4
+Namsis Ticket#9971: <:admin:986898382750621696> **[AlyanM ᴹᴱᴺ#1111]** : 4
+Namsis Ticket#9971: **AlyanM ᴹᴱᴺ#1111**: 5
+AlyanM ᴹᴱᴺ#1111: !Details
+AlyanM ᴹᴱᴺ#1111: !Arguments
+AlyanM ᴹᴱᴺ#1111: !close Test
+AlyanM ᴹᴱᴺ#1111: !c
+AlyanM ᴹᴱᴺ#1111: !c
