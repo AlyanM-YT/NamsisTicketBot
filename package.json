@@ -1,0 +1,22 @@
+{
+  "name": "modmail",
+  "version": "0.0.1",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.2",
+    "create-file": "^1.0.1",
+    "discord": "^0.8.2",
+    "eris": "^0.13.4",
+    "eris-components": "^1.0.5",
+    "express": "^4.17.2",
+    "fs": "0.0.1-security",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.10"
+  },
+  "engines": {
+    "node": "8.x"
+  }
+}
