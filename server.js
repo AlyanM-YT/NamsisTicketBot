@@ -1,7 +1,6 @@
 const Eris = require('eris');
 const moment = require('moment');
 const config = require('./config.js');
-const { SlashCommandBuilder} = require("discord.js")
 const ErisComponents = require('eris-components');
 const bot = new Eris("OTc1NzMxNDA3Mzc0NjQ3MzE3.Gn00Xx.z_z3Hdzcbst80o0-TSDcVRzVqXxkfVoAuHHU8U", { defaultImageFormat: 'png', getAllUsers: false, restMode: true });
 require('./commandHandler.js')(bot);
