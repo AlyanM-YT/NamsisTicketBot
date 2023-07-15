@@ -1,9 +1,11 @@
 const Eris = require('eris');
 const moment = require('moment');
 const config = require('./config.js');
+const { SlashCommandBuilder} = require("discord.js")
 const ErisComponents = require('eris-components');
 const bot = new Eris("OTc1NzMxNDA3Mzc0NjQ3MzE3.Gn00Xx.z_z3Hdzcbst80o0-TSDcVRzVqXxkfVoAuHHU8U", { defaultImageFormat: 'png', getAllUsers: false, restMode: true });
 require('./commandHandler.js')(bot);
+const db = require(`pro.db`)
 require('./database/databaseHandler.js');
 require('./channelLogging.js')(bot);
 
@@ -17,7 +19,55 @@ function updateDB(id, channel, closed, log) {
   });
 }
 
-intents: ["gulids", "gulidMessages"]
+
+intents: ["gulids", "gulidMessages",]
+bot.on("interaction", async interaction => {
+  await interaction.deferUpdate();
+
+  if (!(interaction instanceof Eris.ComponentInteraction)) return;
+
+  if (interaction.data.component_type === 3 && interaction.data.custom_id === "s1") {
+    if (interaction.data.values[0] === "work") {
+      return interaction.createMessage("ok ms")
+    }
+    else if (interaction.data.values[0] === "no") {
+      return interaction.createMessage("b3rf")
+    }
+  };
+});
+
+
+bot.on("messageCreate", async message => {
+if (message.author.bot || (!(message.channel instanceof Eris.GuildChannel))) return;
+ 
+if (message.content.startsWith("!open")) {
+  return message.channel.createMessage({
+    content: "work",
+    components: [{
+      type: 1,
+      components: [{
+        type: 3,
+        custom_id: "s1",
+        options: [
+          {
+          label: "work",
+          value: "yes"
+        },
+        {
+          label: "No",
+          value: "no"
+        }
+      ],
+      placeholder: "c",
+      main_values: 1
+      }]
+    }]
+  });
+};
+});
+
+
+
 
 
 bot.on("interactionCreate", async interaction => {
@@ -132,6 +182,10 @@ bot.on('messageCreate', (msg) => {
         att = '';
       }
 
+      db.add(`number`,1)
+      const id = db.get(`number`) 
+
+      
       if (checkMail === null) {
         bot.createChannel(config.mainGuild, msg.author.username + ' ' + msg.author.discriminator, 0).then(async (newMail) => {
           await mail.createDB(msg.author.id, newMail.id, false, false);
@@ -143,15 +197,17 @@ bot.on('messageCreate', (msg) => {
           await newMail.editPermission(bot.user.id, '52224', '0', 'member', 'Ticket app allowed.');
           bot.getRESTGuildMember(config.Guild, msg.author.id).then(async (userOb) => {
             await bot.createMessage(newMail.id, '**<:image1:1119248778893996104> [ New Ticket ]  <:image1:1119248778893996104>\n\n<:people:1119259309646295070> Ticket Creator is :  ' + fullU + '\n\n<:id:1119258316196040754> User Id is : ' + msg.author.id + '\n\n' + datetime + ' \n\n<:wh:1119260691992412251> Reason For Creation : ' + msg.cleanContent + ' \n\n[ <:NamsisPurple:1027196105315864667> Ticket created by Namsis Bot <:NamsisPurple:1027196105315864667> ]\n\nــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ**');
-            await bot.createMessage(newMail.id, '\n\n**<:NamsisPurple:1027196105315864667> || [ <@&986217872638480384> ] || <:NamsisPurple:1027196105315864667>\n\n<:emoji_18:1030703262267101204> توجد تذكرة جديدة ، يرجى قبولها في أسرع وقت ممكن <:emoji_18:1030703262267101204>\n\n<:emoji_18:1030703262267101204> `!ar` لقبول التذكرة ، اكتب الأمر**');
-                      await bot.getDMChannel(msg.author.id).then((bot) => bot.createMessage('`✔` **اهلاً، تم إرسال رسالتك إلى فريق الإدارة. سنتواصل معك بأقرب وقتٍ ممكن، يرجى شرح المشكلة التي تواجهها وفي حال أنها كانت " شكوى " ، يُستحسن تقديم دلائل. كتابتك لموضوعك بالكامل بالأدلة اللازمة  يساعد في توفير وقتك ووقت الإدارة**'));
+            await bot.createMessage(newMail.id, '\n\n**<:NamsisPurple:1027196105315864667> || [ <1@&986217872638480384> ] || <:NamsisPurple:1027196105315864667>\n\n<:emoji_18:1030703262267101204> توجد تذكرة جديدة ، يرجى قبولها في أسرع وقت ممكن <:emoji_18:1030703262267101204>\n\n<:emoji_18:1030703262267101204> `!ar` لقبول التذكرة ، اكتب الأمر**');
+                      await bot.getDMChannel(msg.author.id).then((bot) => bot.createMessage('`✔` **اهلاً، تم إرسال رسالتك إلى فريق الإدارة. سنتواصل معك بأقرب وقتٍ ممكن، يرجى شرح المشكلة التي تواجهها وفي حال أنها كانت " شكوى " ، يُستحسن تقديم دلائل. كتابتك لموضوعك بالكامل بالأدلة اللازمة  يساعد في توفير وقتك ووقت الإدارة**\n\n<:id:1119258316196040754> رقم التذكرة الخاصة بك هو: ' + id +' '));
 
           });
         });
       } else if (checkMail !== null) {
         if (checkMail.isBanned === true) return bot.getDMChannel(checkMail.userID).then((bot) => bot.createMessage('**لا يمكنك إنشاء تذكرة جديدة. لقد تم منعك من إنشاء تذاكر في  ' + botName + '!**'));
-        if (checkMail.isClosed === true) {
-          bot.createChannel(config.mainGuild, msg.author.username + ' ' + msg.author.discriminator, 0).then(async (newMail) => {
+        if (msg.content === '!ticket') { 
+
+        if (checkMail.isClosed === true) 
+          bot.createChannel(config.mainGuild, msg.author.username +"-ticket・🆔"+ id +'').then(async (newMail) => {
             await updateDB(msg.author.id, newMail.id, false, '');
             await newMail.edit({ parentID: config.mailChannel });
             await newMail.editPermission(config.mainGuild, '0', '1024', 'role', '@everyone view denied.');
@@ -160,9 +216,9 @@ bot.on('messageCreate', (msg) => {
             });
             await newMail.editPermission(bot.user.id, '52224', '0', 'member', 'Ticket app allowed.');
             bot.getRESTGuildMember(config.Guild, msg.author.id).then(async (userOb) => {
-              await bot.createMessage(newMail.id, '**<:image1:1119248778893996104> [ New Ticket ]  <:image1:1119248778893996104>\n\n<:people:1119259309646295070> Ticket Creator is :  ' + fullU + '\n\n<:id:1119258316196040754> User Id is : ' + msg.author.id + '\n\n' + datetime + ' \n\n<:wh:1119260691992412251> Reason For Creation : ' + msg.cleanContent + ' \n\n[ <:NamsisPurple:1027196105315864667> Ticket created by Namsis Bot <:NamsisPurple:1027196105315864667> ]\n\nــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ**');
-              await bot.createMessage(newMail.id, '\n\n**<:NamsisPurple:1027196105315864667> || [ <@&986217872638480384> ] || <:NamsisPurple:1027196105315864667>\n\n<:emoji_18:1030703262267101204> توجد تذكرة جديدة ، يرجى قبولها في أسرع وقت ممكن <:emoji_18:1030703262267101204>\n\n<:emoji_18:1030703262267101204> `!ar` لقبول التذكرة ، اكتب الأمر**');
-                        await bot.getDMChannel(msg.author.id).then((bot) => bot.createMessage('`✔` **اهلاً، تم إرسال رسالتك إلى فريق الإدارة. سنتواصل معك بأقرب وقتٍ ممكن، يرجى شرح المشكلة التي تواجهها وفي حال أنها كانت " شكوى " ، يُستحسن تقديم دلائل. كتابتك لموضوعك بالكامل بالأدلة اللازمة  يساعد في توفير وقتك ووقت الإدارة**'));
+              await bot.createMessage(newMail.id, '**<:image1:1119248778893996104> [ New Ticket ]  <:image1:1119248778893996104>\n\n<:people:1119259309646295070> Ticket Creator is :  ' + fullU + '\n\n<:idver:1129799079917006989> User Id is : ' + msg.author.id + '\n\n<:id:1119258316196040754> Ticket Id is : ' + id + '\n\n' + datetime + ' \n\n<:wh:1119260691992412251> Reason For Creation : ' + msg.cleanContent + ' \n\n[ <:NamsisPurple:1027196105315864667> Ticket created by Namsis Bot <:NamsisPurple:1027196105315864667> ]\n\nــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ**');
+              await bot.createMessage(newMail.id, '\n\n**<:NamsisPurple:1027196105315864667> || [ <@1&986217872638480384> ] || <:NamsisPurple:1027196105315864667>\n\n<:emoji_18:1030703262267101204> توجد تذكرة جديدة ، يرجى قبولها في أسرع وقت ممكن <:emoji_18:1030703262267101204>\n\n<:emoji_18:1030703262267101204> `!ar` لقبول التذكرة ، اكتب الأمر**');
+              await bot.getDMChannel(msg.author.id).then((bot) => bot.createMessage('`✔` **اهلاً، تم إرسال رسالتك إلى فريق الإدارة. سنتواصل معك بأقرب وقتٍ ممكن، يرجى شرح المشكلة التي تواجهها وفي حال أنها كانت " شكوى " ، يُستحسن تقديم دلائل. كتابتك لموضوعك بالكامل بالأدلة اللازمة  يساعد في توفير وقتك ووقت الإدارة\n\n> <:id:1119258316196040754> | رقم التذكرة الخاصة بك هو : '+ id +'**'));
 
             });
           });
