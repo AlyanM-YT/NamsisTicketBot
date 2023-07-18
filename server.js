@@ -206,7 +206,7 @@ bot.on('messageCreate', (msg) => {
         if (msg.content === '!ticket') { 
 
         if (checkMail.isClosed === true) 
-          bot.createChannel(config.mainGuild, msg.author.username +"-ticket・🆔"+ id +'').then(async (newMail) => {
+          bot.createChannel(config.mainGuild,"ticket・"+ msg.author.username + "🆔"+ id + "").then(async (newMail) => {
             await updateDB(msg.author.id, newMail.id, false, '');
             await newMail.edit({ parentID: config.mailChannel });
             await newMail.editPermission(config.mainGuild, '0', '1024', 'role', '@everyone view denied.');
